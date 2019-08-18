@@ -10,5 +10,24 @@
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.reporting.outputEncoding>>UTF-8</project.reporting.outputEncoding>
   	<java.version>1.8</java.version>
+  	<!-- spring版本号 -->
+  	<spring.version>4.1.7.RELEASE</spring.version>
+  	<!-- springBatch包 -->
+  	<springbatch.version>3.0.3.RELEASE</springbatch.version>
+  	<!-- 阿里巴巴数据源包 -->
+    <druid.version>1.0.15</druid.version>
   </properties>
+
+  <build>
+	  <plugins>
+    	<plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            	<configuration>
+                	<source>${project.build.sourceEncoding}</source>
+                    <target>${project.reporting.outputEncoding}</target>
+                </configuration>
+         </plugin>
+    	</plugins>
+	</build>
 </project>
