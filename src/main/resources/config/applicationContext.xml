@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 读数据源 -->
+	<bean id="readDruidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.mysql.to.connection.url}" />
+		<property name="username" value="${jdbc.mysql.to.connection.username}" />
+		<property name="password" value="${jdbc.mysql.to.connection.password}" />
+		<property name="filters" value="${jdbc.mysql.to.connection.filters}" />
+		<property name="maxActive" value="${jdbc.mysql.to.connection.maxActive}" />
+		<property name="initialSize"
+				  value="${jdbc.mysql.to.connection.initialSize}" />
+		<property name="maxWait" value="${jdbc.mysql.to.connection.maxWait}" />
+		<property name="minIdle" value="${jdbc.mysql.to.connection.minIdle}" />
+		<property name="timeBetweenEvictionRunsMillis"
+				  value="${jdbc.mysql.to.connection.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis"
+				  value="${jdbc.mysql.to.connection.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery"
+				  value="${jdbc.mysql.to.connection.validationQuery}" />
+		<property name="testWhileIdle"
+				  value="${jdbc.mysql.to.connection.testWhileIdle}" />
+		<property name="testOnBorrow"
+				  value="${jdbc.mysql.to.connection.testOnBorrow}" />
+		<property name="testOnReturn"
+				  value="${jdbc.mysql.to.connection.testOnReturn}" />
+		<property name="poolPreparedStatements"
+				  value="${jdbc.mysql.to.connection.poolPreparedStatements}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+				  value="${jdbc.mysql.to.connection.maxPoolPreparedStatementPerConnectionSize}" />
+	</bean>
+
+
+	<!-- 写数据源 -->
+	<bean id="writeRepDruidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.mysql.rep.connection.url}" />
+		<property name="username" value="${jdbc.mysql.rep.connection.username}" />
+		<property name="password" value="${jdbc.mysql.rep.connection.password}" />
+		<property name="filters" value="${jdbc.mysql.rep.connection.filters}" />
+		<property name="maxActive" value="${jdbc.mysql.rep.connection.maxActive}" />
+		<property name="initialSize" value="${jdbc.mysql.rep.connection.initialSize}" />
+		<property name="maxWait" value="${jdbc.mysql.rep.connection.maxWait}" />
+		<property name="minIdle" value="${jdbc.mysql.rep.connection.minIdle}" />
+		<property name="timeBetweenEvictionRunsMillis"
+				  value="${jdbc.mysql.rep.connection.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis"
+				  value="${jdbc.mysql.rep.connection.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery"
+				  value="${jdbc.mysql.rep.connection.validationQuery}" />
+		<property name="testWhileIdle"
+				  value="${jdbc.mysql.rep.connection.testWhileIdle}" />
+		<property name="testOnBorrow" value="${jdbc.mysql.rep.connection.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.mysql.rep.connection.testOnReturn}" />
+		<property name="poolPreparedStatements"
+				  value="${jdbc.mysql.rep.connection.poolPreparedStatements}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+				  value="${jdbc.mysql.rep.connection.maxPoolPreparedStatementPerConnectionSize}" />
+	</bean>
+
+
+	<!-- writer sqlSessionFactory -->
+	<bean id="sqlSessionFactoryTo" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dtcDruidDataSource" />
+		<property name="mapperLocations"
+				  value="classpath*:mapper/UserToMapper.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryTo"/>
+		<property name="basePackage" value="com.hcw.core.batch.dao" />
+	</bean>
+
+</beans>

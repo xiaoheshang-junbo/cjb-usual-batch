@@ -16,7 +16,56 @@
   	<springbatch.version>3.0.3.RELEASE</springbatch.version>
   	<!-- 阿里巴巴数据源包 -->
     <druid.version>1.0.15</druid.version>
+     <!-- mybatis版本号 -->
+     <mybatis.version>3.2.4</mybatis.version>
+     <!-- mybatis/spring包 -->
+     <mybatis.spring.version>1.2.2</mybatis.spring.version>
+     <!-- mysql驱动包 -->
+     <mysql.version>5.0.3</mysql.version>
   </properties>
+
+	<dependencies>
+		<!-- spring 核心包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- 阿里巴巴数据源druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- mybatis/spring包 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis.spring.version}</version>
+        </dependency>
+        
+        <!-- Spring Batch -->
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+            <version>${springbatch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-infrastructure</artifactId>
+            <version>${springbatch.version}</version>
+        </dependency>
+        
+        <!-- mysql驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+		
+	</dependencies>
 
   <build>
 	  <plugins>
